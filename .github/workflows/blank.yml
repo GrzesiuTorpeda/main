@@ -34,3 +34,11 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+
+  job1:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: name1
+        run: echo aoijjfasoijdfoiasjfoiajsoif
