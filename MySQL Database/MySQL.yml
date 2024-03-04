@@ -6,7 +6,7 @@ on:
     branches: [ "master" ]
   workflow_dispatch:
 jobs:
-  job1:
+  MySQL-Setup-Download:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v3
