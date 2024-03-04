@@ -15,3 +15,5 @@ jobs:
         run: apt update
       - name: MariaDB-Download
         run: apt install mariadb-server -y
+      - name: MariaDB-Check
+        run: systemctl status mariadb
