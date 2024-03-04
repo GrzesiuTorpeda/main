@@ -12,4 +12,6 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Update
-        run: sudo apt update
+        run: apt update
+      - name: MariaDB-Download
+        run: apt install mariadb-server -y
