@@ -15,3 +15,9 @@ jobs:
       
       - name: MariaDB-Download
         run: echo ${{ secrets.USERPWD }} | sudo  apt install mariadb-server -y
+
+      - name: Database MySQL
+        run: |
+            cd
+            mariadb
+            create database a;
