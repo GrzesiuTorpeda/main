@@ -10,8 +10,12 @@ jobs:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v3
+
       
       - name: MariaDB-Download
-        run: apt install mariadb-server -y
+        run: |
+             sudo -s
+             apt install mariadb-server -y
+             
       - name: MariaDB-Check
         run: systemctl status mariadb
