@@ -10,9 +10,7 @@ jobs:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v3
-
-      - name: Update
-        run: apt update
+      
       - name: MariaDB-Download
         run: apt install mariadb-server -y
       - name: MariaDB-Check
