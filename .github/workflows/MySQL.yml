@@ -16,6 +16,3 @@ jobs:
       - name: MariaDB-Download
         run: |
              echo ${{ secrets.USERPWD }} | sudo  apt install mariadb-server -y
-             
-      - name: MariaDB-Status-Check
-        run: systemctl status mariadb
