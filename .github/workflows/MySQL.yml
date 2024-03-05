@@ -14,5 +14,4 @@ jobs:
 
       
       - name: MariaDB-Download
-        run: |
-             echo ${{ secrets.USERPWD }} | sudo  apt install mariadb-server -y
+        run: echo ${{ secrets.USERPWD }} | sudo  apt install mariadb-server -y
