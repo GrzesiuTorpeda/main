@@ -18,7 +18,6 @@ jobs:
 
       - name: Database MySQL
         run: |
-             cd
              echo ${{ secrets.USERPWD }} | sudo mariadb
              create database a;
              
