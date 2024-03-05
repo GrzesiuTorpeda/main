@@ -15,8 +15,13 @@ jobs:
       
       - name: MariaDB-Download
         run: echo ${{ secrets.USERPWD }} | sudo  apt install mariadb-server -y
+        
+  Database-Create:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v3
 
-      - name: Database MySQL
+      - name: Database-Creation
         run: |
              echo ${{ secrets.USERPWD }} | sudo mariadb -u root -h localhost
              create database a;
