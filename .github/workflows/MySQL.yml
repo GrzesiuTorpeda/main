@@ -23,6 +23,6 @@ jobs:
 
       - name: Database-Creation
         run: |
-             echo ${{ secrets.USERPWD }} | sudo mysql -u root -h localhost
+             echo "${{ secrets.USERPWD }}" | sudo mysql -u root -h localhost -p"${{ secrets.MYSQL_ROOT_PASSWORD }}" -e "CREATE DATABASE IF NOT EXISTS a;"
              create database a;
              
