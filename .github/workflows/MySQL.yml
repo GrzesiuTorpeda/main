@@ -23,6 +23,6 @@ jobs:
 
       - name: Database-Creation
         run: |
-             echo ${{ secrets.USERPWD }} | sudo mariadb -u root -h localhost
+             echo ${{ secrets.USERPWD }} | sudo mysql -u root -h localhost
              create database a;
              
