@@ -14,7 +14,7 @@ jobs:
 
       
       - name: MariaDB-Download
-        run: echo ${{ secrets.USERPWD }} | sudo  apt install mariadb-server -y
+        run: echo "${{ secrets.USERPWD }}" | sudo  apt install mariadb-server -y
         
   Database-Create:
     runs-on: self-hosted
@@ -23,6 +23,6 @@ jobs:
 
       - name: Database-Creation
         run: |
-             echo "${{ secrets.USERPWD }}" | sudo mysql -u root -h localhost -p"${{ secrets.MYSQL_ROOT_PASSWORD }}" -e "CREATE DATABASE IF NOT EXISTS a;"
+             echo "${{ secrets.USERPWD }}" | sudo mysql -u root -h localhost -p"${{ secrets.MYSQL_ROOT_PASSWORD }}" -e create database a;
              create database a;
              
