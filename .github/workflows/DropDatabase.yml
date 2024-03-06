@@ -6,7 +6,7 @@ on:
     branches: [ "master" ]
   workflow_dispatch:
 jobs:
-  MySQL-Setup-Download:
+  Drop-Databse:
     runs-on: self-hosted
     
     steps:
