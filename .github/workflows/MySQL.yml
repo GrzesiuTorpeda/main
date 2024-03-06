@@ -23,5 +23,5 @@ jobs:
 
       - name: Database-Creation
         run: |
-             echo "${{ secrets.MYSQL_ROOT_PASSWORD }}" | sudo mysql -u root -h localhost -p -e "create database a;" -e "create table amongos (kolumna 1 varchar255, kolumna 2 varchar255, kolumna 3, varchar255)"
+             echo "${{ secrets.MYSQL_ROOT_PASSWORD }}" | sudo mysql -u root -h localhost -p -e "create database a;" -e "use a;" -e "create table amongos (kolumna 1 varchar255, kolumna 2 varchar255, kolumna 3, varchar255)"
              
