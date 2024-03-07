@@ -1,9 +1,9 @@
 name: MySQL
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "MySQL" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "MySQL" ]
   workflow_dispatch:
 jobs:
   MySQL-Setup-Download:
