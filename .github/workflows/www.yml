@@ -15,3 +15,12 @@ jobs:
              sudo apt install apache2 -y
              sudo systemctl start apache2
              sudo systemctl status apache2
+ HTML-Site-Create:
+   runs-on: self-hosted
+   steps:
+     - uses: actions/checkout@v3
+
+     - name: HTML-Site-Creation
+       run: |
+            cd /var/www/html/
+            sudo nano index.html
