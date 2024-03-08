@@ -10,8 +10,8 @@ jobs:
       - uses: actions/checkout@v3
       - name: Uninstall
         run: |
-             apt-get purge -y apache2* php* mysql* mariadb*
-             rm -rf /etc/mysql 
-             rm -rf /var/lib/mysql
-             rm -rf /var/www/*
-             rm -rf /etc/apache2/*
+             sudo apt-get purge -y apache2* php* mysql* mariadb*
+             sudo rm -rf /etc/mysql 
+             sudo rm -rf /var/lib/mysql
+             sudo rm -rf /var/www/*
+             sudo rm -rf /etc/apache2/*
