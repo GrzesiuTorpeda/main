@@ -1,0 +1,17 @@
+name: Reset
+on:
+  pull_request:
+    branches: [ "master" ]
+  workflow_dispatch:
+jobs:
+  Uninstall:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v3
+      - name: Uninstall
+        run: |
+             apt-get purge -y apache2* php* mysql* mariadb*
+             rm -rf /etc/mysql 
+             rm -rf /var/lib/mysql
+             rm -rf /var/www/*
+             rm -rf /etc/apache2/*
