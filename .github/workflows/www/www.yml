@@ -23,4 +23,7 @@ jobs:
      - name: HTML-Site-Creation
        run: |
             cd /var/www/html/
-            sudo nano index.html
+            nano index.html
+            git add index.html
+            git commit -m "Updated website page"
+            git push origin main
