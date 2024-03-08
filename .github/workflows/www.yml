@@ -24,18 +24,14 @@ jobs:
 
      - name: HTML-Site-Creation
        run: |
-            cd /var/www/html/
-            expect -c '
-            spawn nano index.html
-            send "<!DOCTYPE html>\r"
-            send "<html>\r"
-            send "<head>\r"
-            send "<title>My Website</title>\r"
-            send "</head>\r"
-            send "<body>\r"
-            send "<h1>Hello, world!</h1>\r"
-            send "</body>\r"
-            send "</html>\r"
-            send "\x01"  # This sends Ctrl+X to exit Nano
-            expect eof
-            '
+            cat << EOF > /var/www/html/index.html
+            <!DOCTYPE html>
+            <html>
+            <head>
+            <title>My Website</title>
+            </head>
+            <body>
+            <h1>Hello, world!</h1>
+            </body>
+            </html>
+            EOF
