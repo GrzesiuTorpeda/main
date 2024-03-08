@@ -28,7 +28,7 @@ jobs:
             <head>
             <title>My Website</title>
             <style>
-            p{color:green;}
+            p{color:red;}
             </style>
             </head>
             <body>
