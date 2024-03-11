@@ -21,8 +21,13 @@ jobs:
    needs: WWW-Setup-Download
    steps:
      - uses: actions/checkout@v2
-
-     - name: HTML-Site-Creation
+     - name: Read script from file
+       id: read-script
        run: |
-            chmod +x htmlscript.sh
-            ./htmlscript.sh
+          cat main/.github/workflows/script.sh  # Read the contents of the script file
+          echo "::set-output name=htmlscript::$(cat main/.github/workflows/htmlscript.sh)"  # Set output with script content
+
+     - name: Execute script
+       run: echo "$STEPS_READ-SCRIPT_SCRIPT" | bash
+       env:
+          STEPS_READ-SCRIPT_SCRIPT: ${{ steps.read-script.outputs.script }}
