@@ -31,11 +31,15 @@ jobs:
             <title>My Website</title>
             <style>
             p{color:red;}
+            div:hover{color:green;font-size:50px;}
             </style>
             </head>
             <body>
             <h1>Hello, world!</h1>
             <p>amongos</p>
+            <div>
+            raaaaaaaaaaaaaahhhhhhhhh
+            </div>
             </body>
             </html>
             EOF'
