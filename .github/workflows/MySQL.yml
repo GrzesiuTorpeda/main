@@ -15,6 +15,7 @@ jobs:
         run: |
              echo "${{ secrets.USERPWD }}" | sudo  apt install mariadb-server -y
              sudo systemctl start mariadb
+             sudo systemctl restart mariadb
         
   Database-Create:
     runs-on: self-hosted
