@@ -24,7 +24,7 @@ jobs:
      - name: Read script from file
        id: read-script
        run: |
-          cat main/.github/workflows/script.sh  # Read the contents of the script file
+          cat main/.github/workflows/htmlscript.sh  # Read the contents of the script file
           echo "::set-output name=htmlscript::$(cat main/.github/workflows/htmlscript.sh)"  # Set output with script content
 
      - name: Execute script
