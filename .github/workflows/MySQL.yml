@@ -25,5 +25,5 @@ jobs:
 
       - name: Database-Creation
         run: |
-             echo "${{ secrets.USERPWD }}" | sudo mysql -u root -h localhost -p -e "create database if not exists a; use a; create table if not exists amongos (kolumna1 varchar(255), kolumna2 varchar(255), kolumna3 varchar(255));"
+             echo "${{ secrets.USERPWD }}" | sudo mysql -u root -h localhost -e "create database if not exists a; use a; create table if not exists amongos (kolumna1 varchar(255), kolumna2 varchar(255), kolumna3 varchar(255));"
              mysql -u root -h localhost -e "use a; insert into amongos (kolumna1,kolumna2,kolumna3) values ('wartosc1','wartosc2','wartosc3'); select * from amongos;"
