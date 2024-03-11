@@ -23,5 +23,5 @@ jobs:
 
       - name: Database-Creation
         run: |
-             echo "${{ secrets.USERPWD }}" | mysql -u root -h localhost -e "create database a; use a; create table amongos (kolumna1 varchar(255), kolumna2 varchar(255), kolumna3 varchar(255));"
+             echo "${{ secrets.USERPWD }}" | mysql -u root -h localhost -p -e "create database a; use a; create table amongos (kolumna1 varchar(255), kolumna2 varchar(255), kolumna3 varchar(255));"
              mysql -u root -h localhost -e "use a; insert into amongos (kolumna1,kolumna2,kolumna3) values ('wartosc1','wartosc2','wartosc3'); select * from amongos;"
