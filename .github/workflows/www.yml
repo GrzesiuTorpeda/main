@@ -19,6 +19,7 @@ jobs:
 
  HTML-Site-Create:
     runs-on: self-hosted
+    needs: WWW-Setup-Download
     steps:
       - uses: actions/checkout@v3
       - name: HTML-Site-Creation
