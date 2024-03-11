@@ -16,18 +16,29 @@ jobs:
              sudo apt install apache2 -y
              sudo systemctl start apache2
              sudo systemctl status apache2
- HTML-Site-Create:
-   runs-on: self-hosted
-   needs: WWW-Setup-Download
-   steps:
-     - uses: actions/checkout@v2
-     - name: Read script from file
-       id: read-script
-       run: |
-          cat main/.github/workflows/htmlscript.sh  # Read the contents of the script file
-          echo "::set-output name=htmlscript::$(cat main/.github/workflows/htmlscript.sh)"  # Set output with script content
 
-     - name: Execute script
-       run: echo "$STEPS_READ-SCRIPT_SCRIPT" | bash
-       env:
-          STEPS_READ-SCRIPT_SCRIPT: ${{ steps.read-script.outputs.script }}
+ HTML-Site-Create:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v3
+      - name: HTML-Site-Creation
+        run: |
+             sudo sh -c 'cat << EOF > /var/www/html/index.html
+             <!DOCTYPE html>
+             <html>
+             <head>
+             <title>My Website</title>
+             <style>
+             p{color:red;}
+             div{color:blue;}
+             </style>
+             </head>
+             <body>
+             <h1>Hello, world!</h1>
+             <p>amongos</p>
+             <div>
+             raaaaaaaaaaaaaahhhhhhhhh
+             </div>
+             </body>
+             </html>
+             EOF'
