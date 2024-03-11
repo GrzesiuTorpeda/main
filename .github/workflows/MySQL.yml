@@ -13,6 +13,7 @@ jobs:
       
       - name: MariaDB-Download
         run: |
+             sudo dpkg --configure -a
              echo "${{ secrets.USERPWD }}" | sudo  apt install mariadb-server -y
              sudo systemctl start mariadb
         
