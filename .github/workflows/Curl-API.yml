@@ -65,6 +65,6 @@ jobs:
 
              print("Nazwy plików zostały dodane do tabeli w bazie danych.")
              EOF'
-             sudo python3 python.py
+             sudo python3 /home/ubuntu/python.py
 
      
