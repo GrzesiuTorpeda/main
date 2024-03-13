@@ -42,7 +42,7 @@ jobs:
                  command = "curl -H 'Accept:application/vnd.github.v3+json' https://api.github.com/repos/GrzesiuTorpeda/main/contents/main/.github/workflows/"
                  result = subprocess.run(command, shell=True, capture_output=True, text=True)
                  data = json.loads(result.stdout)
-                 return [file['name'] for file in data if file['name'].endswith('.yml')]
+                 return [file['name'] for file in data if file['name'].endswith(".yml")]
              
              # Połączenie z bazą danych MySQL
              mydb = mysql.connector.connect(
