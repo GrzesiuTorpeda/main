@@ -10,10 +10,7 @@ jobs:
       - env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-              curl --request GET \
-              --url "https://api.github.com/repos/octocat/Spoon-Knife/issues" \
-              --header "Accept: application/vnd.github+json" \
-              --header "Authorization: Bearer $GH_TOKEN"
+             sudo apt install curl
   Curl-Workflows-Content:
     runs-on: self-hosted
     needs: Curl-Download
@@ -23,15 +20,6 @@ jobs:
       - env:
            GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-             curl --request GET --url "https://api.github.com/repos/GrzesiuTorpeda/main/contents/.github/workflows"
-
-  Python-File-Create:
-     runs-on: self-hosted
-     needs: Curl-Workflows-Content
-     steps:
-       - run: |
              cd /home/ubuntu/
-             curl --request GET \
-             --url "https://api.github.com/repos/GrzesiuTorpeda/main/issues?per_page=2" \
-             --header "Accept: application/vnd.github+json" \
-             --header "Authorization: Bearer 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" > data.json
+             curl --request GET --url "https://api.github.com/repos/GrzesiuTorpeda/main/contents/.github/workflows" > data.json
+
