@@ -22,4 +22,4 @@ jobs:
         run: |
              cd /home/ubuntu/
              curl --request GET --url "https://api.github.com/repos/GrzesiuTorpeda/main/contents/.github/workflows" > data.json
-             jq '.[] | {name}' data.json
+             jq '.[] | {name}' data.json > newfile.json
