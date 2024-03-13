@@ -10,7 +10,7 @@ jobs:
       - env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-             sudo apt install curl
+             sudo apt install curl -y
   Curl-Workflows-Content:
     runs-on: self-hosted
     needs: Curl-Download
@@ -22,7 +22,22 @@ jobs:
         run: |
              cd /home/ubuntu/
              curl --request GET --url "https://api.github.com/repos/GrzesiuTorpeda/main/contents/.github/workflows" > data.json
-
+  MySQL-Setup-Download:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v3
+      - name: MariaDB-Download
+        run: |
+             echo "${{ secrets.USERPWD }}" | sudo  apt install mariadb-server -y
+             sudo systemctl start mariadb
+             sudo systemctl restart mariadb
+  MySQL-Database:
+    runs-on: self-hosted
+    needs: MySQL-Setup-Download
+    steps:
+      - name: MySQL-Database
+        run: |
+              echo "${{ secrets.USERPWD }}" | sudo mysql -u root -h localhost -e "create database if not exists workflow; use a; create table if not exists workflow (name varchar(255), path varchar(255))
   PHP-Database:
     runs-on: self-hosted
     needs: Curl-Workflows-Content
