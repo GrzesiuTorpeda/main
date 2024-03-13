@@ -32,7 +32,7 @@ jobs:
       -  run: |
               sudo sh -c 'cat << EOF > /home/ubuntu/script.php
               <?php
-                  '$mysqli' = new mysqli("localhost", "root", "ubuntu", "workflow");
+                  "$mysqli" = new mysqli("localhost", "root", "ubuntu", "workflow");
                   if('$mysql'->connect_errno !=0){
                        echo '$mysqli'->connect_error;
                   }
