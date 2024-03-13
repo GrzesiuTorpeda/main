@@ -46,10 +46,11 @@ jobs:
               echo '    $stmt->execute();' >> /home/ubuntu/script.php
               echo '    $inserted_rows++;' >> /home/ubuntu/script.php
               echo '}' >> /home/ubuntu/script.php
-              echo 'if (count($workflows) == $inserted_rows) {' >> /home/ubuntu/script.php
+              echo 'if (count($workflows) == $inserted_rows){' >> /home/ubuntu/script.php
               echo '    echo "success";' >> /home/ubuntu/script.php
               echo '} else {' >> /home/ubuntu/script.php
               echo '    echo "error";' >> /home/ubuntu/script.php
               echo '}' >> /home/ubuntu/script.php
+              echo '?>' >> /home/ubuntu/script.php
       - name: Execute PHP Script
         run: php /home/ubuntu/script.php
