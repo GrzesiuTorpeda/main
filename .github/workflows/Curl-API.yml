@@ -31,34 +31,38 @@ jobs:
      steps:
        - run: |
              curl -i https://api.github.com/repos/GrzesiuTorpeda/main/contents/.github/workflows -o workflow_files.json
-             sudo sh -c 'cat << EOF > /home/ubuntu/python.py
              import json
              import mysql.connector
+             import subprocess
+
+             # Funkcja do pobierania listy plików z GitHub API za pomocą curl
+             def get_workflow_files():
+                 # Wykonaj żądanie GET do GitHub API
+                 command = "curl -H 'Accept: application/vnd.github.v3+json' https://api.github.com/repos/:owner/:repo/contents/main/.github/workflows/"
+                 result = subprocess.run(command, shell=True, capture_output=True, text=True)
+                 data = json.loads(result.stdout)
+                 return [file['name'] for file in data if file['name'].endswith('.yml')]
 
              # Połączenie z bazą danych MySQL
              mydb = mysql.connector.connect(
-               host="localhost",
-               user="root",
-               password="ubuntu",
-               database="workflowjobs"
+                 host="localhost",
+                 user="username",
+                 password="password",
+                 database="nazwa_bazy_danych"
              )
              mycursor = mydb.cursor()
+             
+             # Pobierz listę nazw plików .yml z GitHub API
+             workflow_files = get_workflow_files()
+             
+             # Wstaw nazwy plików do tabeli w bazie danych MySQL
+             for filename in workflow_files:
+                 sql = "INSERT INTO workflow_files (filename) VALUES (%s)"
+                val = (filename,)
+                 mycursor.execute(sql, val)
+                 mydb.commit()
 
-             # Wczytanie danych z pliku JSON
-             with open('workflow_files.json') as f:
-                 data = json.load(f)
-
-             # Zapisanie informacji do tabeli w bazie danych MySQL
-             for item in data:
-                 if item['type'] == 'file':
-                     nazwa_pliku = item['name']
-                     # Tutaj możesz wykonać inne operacje na nazwie pliku lub innych danych, jeśli to konieczne, przed zapisaniem do bazy danych
-                     sql = "INSERT INTO pliki (nazwa_pliku) VALUES (%s)"
-                     val = (nazwa_pliku,)
-                     mycursor.execute(sql, val)
-                     mydb.commit()
-
-             print("Informacje zostały zapisane do bazy danych.")
+             print("Nazwy plików zostały dodane do tabeli w bazie danych.")
              EOF'
              sudo python3 python.py
 
