@@ -30,8 +30,8 @@ jobs:
      needs: Curl-Workflows-Content
      steps:
        - run: |
-             curl -i https://api.github.com/repos/GrzesiuTorpeda/main/contents/.github/workflows -o ~/actions-runner/workflow_files.json
-             sudo sh -c 'cat << EOF > ~/actions-runner/python.py
+             curl -i https://api.github.com/repos/GrzesiuTorpeda/main/contents/.github/workflows -o /home/ubuntu/actions-runner/workflow_files.json
+             sudo sh -c 'cat << EOF > /home/ubuntu/actions-runner/python.py
              import json
              import mysql.connector
              import subprocess
