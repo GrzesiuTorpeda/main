@@ -56,7 +56,7 @@ jobs:
               echo '      echo $mysqli->connect_error;' >> /home/ubuntu/script.php
               echo '  }' >> /home/ubuntu/script.php
               echo '  $json_data = file_get_contents("data.json");' >> /home/ubuntu/script.php
-              echo '  $workflows = json_decode($json_data, JSON_OBJECT_AS_ARRAY);' >> /home/ubuntu/script.php
+              echo '  $workflows = json_decode($json_data, true);' >> /home/ubuntu/script.php
               echo '  $stmt = $mysqli->prepare("INSERT INTO workflow(name,path) VALUES(?,?)");' >> /home/ubuntu/script.php
               echo '  $stmt->bind_param("ss", $name, $path);' >> /home/ubuntu/script.php
               echo '  $inserted_rows = 0;' >> /home/ubuntu/script.php
