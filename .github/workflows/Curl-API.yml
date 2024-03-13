@@ -31,56 +31,7 @@ jobs:
      steps:
        - run: |
              curl -i https://api.github.com/repos/GrzesiuTorpeda/main/contents/.github/workflows -o /home/ubuntu/workflow_files.json
-             sudo sh -c 'cat << EOF > /home/ubuntu/python.py
-             import json
-             import mysql.connector
-             import requests
-
-             def get_workflow_files(repo_owner, repo_name, github_token):
-                 headers = {
-                     'Authorization': f'token {github_token}',
-                     'Accept': 'application/vnd.github.v3+json'
-                 }
-                 url = f'https://api.github.com/repos/{repo_owner}/{repo_name}/contents/.github/workflows'
-                 response = requests.get(url, headers=headers)
-                 response.raise_for_status()
-                 data = response.json()
-                 return [file['name'] for file in data if file['name'].endswith('.yml')]
-
-             def insert_files_to_database(files, host, user, password, database):
-                 mydb = mysql.connector.connect(
-                     host=host,
-                     user=user,
-                     password=password,
-                     database=database
-                 )
-                 cursor = mydb.cursor()
-                 for filename in files:
-                     sql = "INSERT INTO workflow_files (filename) VALUES (%s)"
-                     val = (filename,)
-                     cursor.execute(sql, val)
-                     mydb.commit()
-                 mydb.close()
-
-             # Wprowadź dane dostępowe do GitHub API
-             github_token = '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'
-             repo_owner = 'GrzesiuTorpeda'
-             repo_name = 'main'
-
-             # Wprowadź dane dostępowe do bazy danych MySQL
-             mysql_host = 'localhost'
-             mysql_user = 'root'
-             mysql_password = 'ubuntu'
-             mysql_database = 'workflowjobs'
-
-             # Pobierz listę plików .yml z GitHub API
-             workflow_files = get_workflow_files(repo_owner, repo_name, github_token)
-
-             # Wstaw nazwy plików do tabeli w bazie danych MySQL
-             insert_files_to_database(workflow_files, mysql_host, mysql_user, mysql_password, mysql_database)
-
-             print("Nazwy plików zostały dodane do tabeli w bazie danych.")
-             EOF'
-             sudo python3 /home/ubuntu/python.py
-
-     
+             curl --request GET \
+             --url "https://api.github.com/repos/GrzesiuTorpeda/main/issues?per_page=2" \
+             --header "Accept: application/vnd.github+json" \
+             --header "Authorization: Bearer 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" > data.json
