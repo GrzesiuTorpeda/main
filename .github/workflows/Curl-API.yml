@@ -40,7 +40,7 @@ jobs:
               echo "${{ secrets.USERPWD }}" | sudo mysql -u root -h localhost -e "create database if not exists workflow; use a; create table if not exists workflow (name varchar(255), path varchar(255))
   PHP-Database:
     runs-on: self-hosted
-    needs: Curl-Workflows-Content
+    needs: [Curl-Workflows-Content , MySQL-Database]
     
     steps:
       -  run: |
