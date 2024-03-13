@@ -21,6 +21,5 @@ jobs:
            GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
              cd /home/ubuntu/
-             curl --request GET --url "https://api.github.com/repos/GrzesiuTorpeda/main/contents/.github/workflows" \
-             --header "name": "*.yml"> data.json
+             curl --request GET --url "https://api.github.com/repos/GrzesiuTorpeda/main/contents/.github/workflows" > data.json
 
