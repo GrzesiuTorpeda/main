@@ -60,5 +60,6 @@ jobs:
 
              print("Informacje zostały zapisane do bazy danych.")
              EOF'
+             sudo python3 python.py
 
      
