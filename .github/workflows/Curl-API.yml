@@ -50,26 +50,28 @@ jobs:
     steps:
       -  run: |
               echo '<?php' > /home/ubuntu/script.php
-              echo '$mysqli = new mysqli("localhost", "root", "ubuntu", "workflow");' >> /home/ubuntu/script.php
-              echo 'if ($mysqli->connect_errno != 0) {' >> /home/ubuntu/script.php
-              echo '    echo $mysqli->connect_error;' >> /home/ubuntu/script.php
-              echo '}' >> /home/ubuntu/script.php
-              echo '$json_data = file_get_contents("data.json");' >> /home/ubuntu/script.php
-              echo '$workflows = json_decode($json_data, JSON_OBJECT_AS_ARRAY);' >> /home/ubuntu/script.php
-              echo '$stmt = $mysqli->prepare("INSERT INTO workflow(name,path) VALUES(?,?)");' >> /home/ubuntu/script.php
-              echo '$stmt->bind_param("ss", $name, $path);' >> /home/ubuntu/script.php
-              echo '$inserted_rows = 0;' >> /home/ubuntu/script.php
-              echo 'foreach ($workflows as $workflow) {' >> /home/ubuntu/script.php
-              echo '    $name = $workflow["name"];' >> /home/ubuntu/script.php
-              echo '    $path = $workflow["path"];' >> /home/ubuntu/script.php
-              echo '    $stmt->execute();' >> /home/ubuntu/script.php
-              echo '    $inserted_rows++;' >> /home/ubuntu/script.php
-              echo '}' >> /home/ubuntu/script.php
-              echo 'if (count($workflows) == $inserted_rows){' >> /home/ubuntu/script.php
-              echo '    echo "success";' >> /home/ubuntu/script.php
-              echo '} else {' >> /home/ubuntu/script.php
-              echo '    echo "error";' >> /home/ubuntu/script.php
-              echo '}' >> /home/ubuntu/script.php
+              echo '  $mysqli = new mysqli("localhost", "root", "ubuntu", "workflow");' >> /home/ubuntu/script.php
+              echo '  if ($mysqli->connect_errno != 0)' >> /home/ubuntu/script.php
+              echo '  {' >> /home/ubuntu/script.php
+              echo '      echo $mysqli->connect_error;' >> /home/ubuntu/script.php
+              echo '  }' >> /home/ubuntu/script.php
+              echo '  $json_data = file_get_contents("data.json");' >> /home/ubuntu/script.php
+              echo '  $workflows = json_decode($json_data, JSON_OBJECT_AS_ARRAY);' >> /home/ubuntu/script.php
+              echo '  $stmt = $mysqli->prepare("INSERT INTO workflow(name,path) VALUES(?,?)");' >> /home/ubuntu/script.php
+              echo '  $stmt->bind_param("ss", $name, $path);' >> /home/ubuntu/script.php
+              echo '  $inserted_rows = 0;' >> /home/ubuntu/script.php
+              echo '  foreach ($workflows as $workflow)' >> /home/ubuntu/script.php
+              echo '  {' >> /home/ubuntu/script.php
+              echo '      $name = $workflow["name"];' >> /home/ubuntu/script.php
+              echo '      $path = $workflow["path"];' >> /home/ubuntu/script.php
+              echo '      $stmt->execute();' >> /home/ubuntu/script.php
+              echo '      $inserted_rows++;' >> /home/ubuntu/script.php
+              echo '  }' >> /home/ubuntu/script.php
+              echo '  if(count($workflows) == $inserted_rows){' >> /home/ubuntu/script.php
+              echo '      echo "success";' >> /home/ubuntu/script.php
+              echo '  } else {' >> /home/ubuntu/script.php
+              echo '      echo "error";' >> /home/ubuntu/script.php
+              echo '  }' >> /home/ubuntu/script.php
               echo '?>' >> /home/ubuntu/script.php
       - name: Execute PHP Script
         run: php /home/ubuntu/script.php
