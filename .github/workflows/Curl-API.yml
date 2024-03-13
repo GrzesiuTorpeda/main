@@ -59,7 +59,7 @@ jobs:
              # Wstaw nazwy plików do tabeli w bazie danych MySQL
              for filename in workflow_files:
                  sql = "INSERT INTO workflow_files (filename) VALUES (%s)"
-                val = (filename,)
+                val = (filename)
                  mycursor.execute(sql, val)
                  mydb.commit()
 
