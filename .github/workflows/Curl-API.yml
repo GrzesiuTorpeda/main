@@ -23,4 +23,4 @@ jobs:
       - env:
            GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-             curl -i https://api.github.com/repos/GrzesiuTorpeda/main/contents/.github/workflows
+             curl --request GET --url "https://api.github.com/repos/GrzesiuTorpeda/main/contents/.github/workflows"
