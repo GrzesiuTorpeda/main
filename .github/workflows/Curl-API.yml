@@ -25,7 +25,6 @@ jobs:
   MySQL-Setup-Download:
     runs-on: self-hosted
     steps:
-      - uses: actions/checkout@v3
       - name: MariaDB-Download
         run: |
              echo "${{ secrets.USERPWD }}" | sudo  apt install mariadb-server -y
@@ -38,9 +37,15 @@ jobs:
       - name: MySQL-Database
         run: |
               echo "${{ secrets.USERPWD }}" | sudo mysql -u root -h localhost -e "create database if not exists workflow; use workflow; create table if not exists workflow (name varchar(255), path varchar(255));"
+  PHP-Download:
+    runs-on: self-hosted
+    steps:
+      - name: PHP-Download
+        run: |
+             sudo  apt install php -y
   PHP-Database:
     runs-on: self-hosted
-    needs: [Curl-Workflows-Content , MySQL-Database]
+    needs: [Curl-Workflows-Content , MySQL-Database, PHP-Download]
     
     steps:
       -  run: |
