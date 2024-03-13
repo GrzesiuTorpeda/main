@@ -32,30 +32,30 @@ jobs:
       -  run: |
               sudo sh -c 'cat << EOF > /home/ubuntu/script.php
               <?php
-                  $mysqli = new mysqli('localhost', 'root', 'ubuntu', 'workflow');
-                  if($mysql->connect_errno !=0){
-                       echo $mysqli->connect_error;
+                  '$mysqli' = new mysqli("localhost", "root", "ubuntu", "workflow");
+                  if('$mysql'->connect_errno !=0){
+                       echo '$mysqli'->connect_error;
                   }
 
-                  $json_data = file_get_contents("newfile.json");
-                  $workflows = json_decode($json_data, JSON_OBJECT_AS_ARRAY);
+                  '$json_data' = file_get_contents("newfile.json");
+                  '$workflows' = json_decode('$json_data', JSON_OBJECT_AS_ARRAY);
 
-                  $stmt = $mysqli->prepare("
+                  '$stmt' = '$mysqli'->prepare("
                       INSERT INTO workflow(name,path)
                       VALUES(?,?)
                   ");
-                  $stmt->bind_param("ssdi", $name, $path);
+                  '$stmt'->bind_param("ssdi", '$name', '$path');
 
-                  $inserted_rows = 0;
-                  foreach ($workflows as $workflow) {
-                     $name = $workflow["name"];
-                     $path = $workflow["path"];
+                  '$inserted_rows' = 0;
+                  foreach ('$workflows' as '$workflow') {
+                     '$name' = '$workflow'["name"];
+                     '$path' = '$workflow'["path"];
 
-                     $stmt->execute();
-                     $inserted_rows ++;
+                     '$stmt'->execute();
+                     '$inserted_rows' ++;
                   }
 
-                  if(count($workflows) == $inserted_rows){
+                  if(count('$workflows') == '$inserted_rows'){
                       echo "success";
                   }else{
                       echo "error";
