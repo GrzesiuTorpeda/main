@@ -22,7 +22,6 @@ jobs:
         run: |
              cd /home/ubuntu/
              curl --request GET --url "https://api.github.com/repos/GrzesiuTorpeda/main/contents/.github/workflows" > data.json
-             jq '.[] | {name,path}' data.json > newfile.json
 
   PHP-Database:
     runs-on: self-hosted
@@ -35,7 +34,7 @@ jobs:
               echo 'if ($mysqli->connect_errno != 0) {' >> /home/ubuntu/script.php
               echo '    echo $mysqli->connect_error;' >> /home/ubuntu/script.php
               echo '}' >> /home/ubuntu/script.php
-              echo '$json_data = file_get_contents("newfile.json");' >> /home/ubuntu/script.php
+              echo '$json_data = file_get_contents("data.json");' >> /home/ubuntu/script.php
               echo '$workflows = json_decode($json_data, JSON_OBJECT_AS_ARRAY);' >> /home/ubuntu/script.php
               echo '$stmt = $mysqli->prepare("INSERT INTO workflow(name,path) VALUES(?,?)");' >> /home/ubuntu/script.php
               echo '$stmt->bind_param("ss", $name, $path);' >> /home/ubuntu/script.php
