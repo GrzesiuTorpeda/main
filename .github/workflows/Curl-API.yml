@@ -31,7 +31,7 @@ jobs:
      steps:
        - run: |
              curl -i https://api.github.com/repos/GrzesiuTorpeda/main/contents/.github/workflows -o /home/ubuntu/workflow_files.json
-             sudo sh -c 'cat << EOF > /home/ubuntu//python.py
+             sudo sh -c 'cat << EOF > /home/ubuntu/python.py
              import json
              import mysql.connector
              import subprocess
