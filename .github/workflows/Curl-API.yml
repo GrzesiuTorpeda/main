@@ -2,7 +2,7 @@ name: Curl-API
 on:
   workflow_dispatch:
 jobs:
-  use_api:
+  Curl-Download:
     runs-on: self-hosted
     permissions:
       issues: read
@@ -14,3 +14,14 @@ jobs:
               --url "https://api.github.com/repos/octocat/Spoon-Knife/issues" \
               --header "Accept: application/vnd.github+json" \
               --header "Authorization: Bearer $GH_TOKEN"
+  Curl-UseAPI:
+    runs-on: self-hosted
+    permissions:
+      issues: read
+    steps:
+      - env:
+           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+             curl -i https://api.github.com/repos/GrzesiuTorpeda/main/contents?ref=main
+      
+   
