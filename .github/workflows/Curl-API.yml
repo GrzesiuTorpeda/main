@@ -49,7 +49,7 @@ jobs:
                  host="localhost",
                  user="username",
                  password="password",
-                 database="nazwa_bazy_danych"
+                 database="workflowjobs"
              )
              mycursor = mydb.cursor()
              
