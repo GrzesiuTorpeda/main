@@ -39,7 +39,7 @@ jobs:
              # Funkcja do pobierania listy plików z GitHub API za pomocą curl
              def get_workflow_files():
                  # Wykonaj żądanie GET do GitHub API
-                 command = "curl -H "Accept:application/vnd.github.v3+json" https://api.github.com/repos/GrzesiuTorpeda/main/contents/main/.github/workflows/"
+                 command = "curl -H Accept:application/vnd.github.v3+json https://api.github.com/repos/GrzesiuTorpeda/main/contents/main/.github/workflows/"
                  result = subprocess.run(command, shell=True, capture_output=True, text=True)
                  data = json.loads(result.stdout)
                  return [file["workflow_files.json"] for file in data if file["workflow_files.json"].endswith(".yml")]
