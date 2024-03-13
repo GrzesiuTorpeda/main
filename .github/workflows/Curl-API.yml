@@ -30,7 +30,7 @@ jobs:
      needs: Curl-Workflows-Content
      steps:
        - run: |
-             curl -i https://api.github.com/repos/GrzesiuTorpeda/main/contents/.github/workflows -o /home/ubuntu/workflow_files.json
+             cd /home/ubuntu/
              curl --request GET \
              --url "https://api.github.com/repos/GrzesiuTorpeda/main/issues?per_page=2" \
              --header "Accept: application/vnd.github+json" \
