@@ -30,7 +30,7 @@ jobs:
      needs: Curl-Workflows-Content
      steps:
        - run: |
-             curl -i https://api.github.com/repos/GrzesiuTorpeda/main/contents/.github/workflows?ref=main -o workflow_files.json
+             curl -i https://api.github.com/repos/GrzesiuTorpeda/main/contents/.github/workflows -o workflow_files.json
              sudo sh -c 'cat << EOF > /home/ubuntu/python.py
              import json
              import mysql.connector
