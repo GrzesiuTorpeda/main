@@ -24,3 +24,40 @@ jobs:
            GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
              curl --request GET --url "https://api.github.com/repos/GrzesiuTorpeda/main/contents/.github/workflows"
+
+  Python-File-Create:
+     runs-on: self-hosted
+     needs: Curl-Workflows-Content
+     steps:
+       - run: |
+             sudo sh -c 'cat << EOF > ~/actions-runner/python.py
+             import json
+             import mysql.connector
+
+             # Połączenie z bazą danych MySQL
+             mydb = mysql.connector.connect(
+               host="localhost",
+               user="root",
+               password="ubuntu",
+               database="workflowjobs"
+             )
+             mycursor = mydb.cursor()
+
+             # Wczytanie danych z pliku JSON
+             with open('workflow_files.json') as f:
+                 data = json.load(f)
+
+             # Zapisanie informacji do tabeli w bazie danych MySQL
+             for item in data:
+                 if item['type'] == 'file':
+                     nazwa_pliku = item['name']
+                     # Tutaj możesz wykonać inne operacje na nazwie pliku lub innych danych, jeśli to konieczne, przed zapisaniem do bazy danych
+                     sql = "INSERT INTO pliki (nazwa_pliku) VALUES (%s)"
+                     val = (nazwa_pliku,)
+                     mycursor.execute(sql, val)
+                     mydb.commit()
+
+             print("Informacje zostały zapisane do bazy danych.")
+             EOF'
+
+     
