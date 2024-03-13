@@ -16,6 +16,7 @@ jobs:
               --header "Authorization: Bearer $GH_TOKEN"
   Curl-UseAPI:
     runs-on: self-hosted
+    needs: Curl-Download
     permissions:
       issues: read
     steps:
