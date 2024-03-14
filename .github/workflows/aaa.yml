@@ -21,7 +21,7 @@ jobs:
       - name: Data-Get
         run: |
              cd /var/www/html/
-             curl --request GET --url "https://api.github.com/repos/GrzesiuTorpeda/main/contents/.github/workflows" > data.json
+             sudo curl --request GET --url "https://api.github.com/repos/GrzesiuTorpeda/main/contents/.github/workflows" > data.json
              
   Script-JS:
     runs-on: self-hosted
