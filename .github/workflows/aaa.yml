@@ -20,7 +20,7 @@ jobs:
     steps:
       - name: Data-Get
         run: |
-             cd /var/www/html/
+             sudo cd /var/www/html/
              sudo curl --request GET --url "https://api.github.com/repos/GrzesiuTorpeda/main/contents/.github/workflows" > data.json
              
   Script-JS:
@@ -32,7 +32,7 @@ jobs:
              sudo touch script.js
              sudo sh -c 'cat << EOF > /var/www/html/script.js
              document.addEventListener("DOMContentLoaded", function () {
-                 fetch('data.json')
+                 fetch("data.json")
                      .then(response => response.json())
                      .then(data => {
                          const dataDisplay = document.getElementById("dataDisplay");
