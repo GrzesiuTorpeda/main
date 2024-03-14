@@ -9,8 +9,9 @@ jobs:
     steps:
       - name: Data-Get
         run: |
-             cd /var/www/html/
+             cd /home/ubuntu/
              sudo curl --request GET --url "https://api.github.com/repos/GrzesiuTorpeda/main/contents/.github/workflows" > data.json
+             sudo cp /home/ubuntu/data.json /var/www/html/data.json
              
   Script-JS:
     runs-on: self-hosted
@@ -109,6 +110,9 @@ jobs:
                <a href="#">Amogos3</a>
                </div>
              </div>
+             <div id="dataDisplay">
+             </div>
+             <script src="script.js"></script>
              </body>
              </html>
              EOF'
