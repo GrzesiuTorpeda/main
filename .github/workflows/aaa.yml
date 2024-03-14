@@ -29,7 +29,7 @@ jobs:
       - name: script.js
         run: |
              cd /var/www/html/
-             touch script.js
+             sudo touch script.js
              sudo -sh  -c 'cat << EOF > /var/www/html/script.js
              document.addEventListener("DOMContentLoaded", function () {
                  fetch('data.json')
