@@ -14,6 +14,15 @@ on:
     - cron: '55 * * * *'
     - cron: '0 * * * *'
 jobs:
+  Data-Get:
+    runs-on: self-hosted
+    steps:
+      - name: Data-Get
+        run: |
+             cd /var/www/html/
+             curl --request GET --url "https://api.github.com/repos/GrzesiuTorpeda/main/contents/.github/workflows" > data.json
+
+
   HTML-Site:
     runs-on: self-hosted
     steps:
