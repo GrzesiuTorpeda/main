@@ -1,1 +1,12 @@
-
+name: Strona-Update
+on:
+  schedule:
+    - cron: '10 * * * *'
+  workflow_dispatch:
+jobs:
+  HTML-Site:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v3
+      - name: HTML-Site-Update
+        run: |
