@@ -20,7 +20,7 @@ jobs:
     steps:
       - name: Data-Get
         run: |
-             sudo cd /var/www/html/
+             cd /var/www/html/
              sudo curl --request GET --url "https://api.github.com/repos/GrzesiuTorpeda/main/contents/.github/workflows" > data.json
              
   Script-JS:
