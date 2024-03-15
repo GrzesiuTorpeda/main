@@ -11,7 +11,8 @@ jobs:
         run: |
              cd /home/ubuntu/
              sudo curl --request GET --url "https://api.github.com/repos/GrzesiuTorpeda/main/contents/.github/workflows" > data.json
-             sudo cp /home/ubuntu/data.json /var/www/html/data.json
+             jq '.[] | {"name","path"}' data.json > newfile.json
+             sudo cp /home/ubuntu/newfile.json /var/www/html/data.json
              
   Script-JS:
     runs-on: self-hosted
