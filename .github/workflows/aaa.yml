@@ -32,16 +32,12 @@ jobs:
                          const nameElement = document.createElement("p");
                          nameElement.textContent = "Name: " + data.name;
 
-                         const ageElement = document.createElement("p");
-                         ageElement.textContent = "Age: " + data.age;
-
-                         const cityElement = document.createElement("p");
-                         cityElement.textContent = "City: " + data.city;
+                         const pathElement = document.createElement("p");
+                         pathElement.textContent = "Path: " + data.path;
 
                          // Append the elements to the "dataDisplay" div
                          dataDisplay.appendChild(nameElement);
-                         dataDisplay.appendChild(ageElement);
-                         dataDisplay.appendChild(cityElement);
+                         dataDisplay.appendChild(pathElement);
                      })
                      .catch(error => console.error("Error fetching JSON data:", error));
              });
