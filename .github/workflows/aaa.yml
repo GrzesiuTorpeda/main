@@ -11,8 +11,7 @@ jobs:
         run: |
              cd /home/ubuntu/
              sudo curl --request GET --url "https://api.github.com/repos/GrzesiuTorpeda/main/contents/.github/workflows" > data.json
-             jq '.[] | {"name","path"}' data.json > newfile.json
-             sudo cp /home/ubuntu/newfile.json /var/www/html/data.json
+             sudo cp /home/ubuntu/data.json /var/www/html/data.json
              
   Script-JS:
     runs-on: self-hosted
@@ -29,7 +28,7 @@ jobs:
                  myObj = JSON.parse(this.responseText);
                  text = "<table border='1'>"
                  for (x in myObj) {
-                   text += "<tr><td>" + myObj[x].name + "</td></tr>";
+                   text += "<tr><td>" + myObj[x][sol] + "</td></tr>";
                  }
                  text += "</table>"    
                  document.getElementById("demo").innerHTML = text;
@@ -50,17 +49,13 @@ jobs:
              <html>
              <head>
              <title>AAA</title>
-             <style>
-             </style>
-             <script>
-             </script>
              </head>
              <body>
              <select id="myselect" onchange="change_myselect(this.value)">
                <option value="">Choose an option:</option>
-               <option value="customers">Customers</option>
-               <option value="products">Products</option>
-               <option value="suppliers">Suppliers</option>
+               <option value="name">Name</option>
+               <option value="path">Path</option>
+               <option value="url">URL</option>
              </select>
              <p id="demo"></p>
              <script src="script.js"></script>
