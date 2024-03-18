@@ -36,6 +36,7 @@ jobs:
                xmlhttp.open("POST", "data.json", true);
                xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                xmlhttp.send("x=" + dbParam);
+             }
              EOF'
   
 
