@@ -22,25 +22,21 @@ jobs:
              cd /var/www/html/
              sudo touch script.js
              sudo sh -c 'cat << EOF > /var/www/html/script.js
-             document.addEventListener("DOMContentLoaded", function () {
-                 fetch("data.json")
-                     .then(response => response.json())
-                     .then(data => {
-                         const dataDisplay = document.getElementById("dataDisplay");
-
-                         // Create HTML elements to display the JSON data
-                         const nameElement = document.createElement("p");
-                         nameElement.textContent = "Name: " + data.name;
-
-                         const pathElement = document.createElement("p");
-                         pathElement.textContent = "Path: " + data.path;
-
-                         // Append the elements to the "dataDisplay" div
-                         dataDisplay.appendChild(nameElement);
-                         dataDisplay.appendChild(pathElement);
-                     })
-                     .catch(error => console.error("Error fetching JSON data:", error));
-             });
+             function change_myselect(sel) {
+               const dbParam = JSON.stringify({table:sel,limit:20});
+               const xmlhttp = new XMLHttpRequest();
+               xmlhttp.onload = function() {
+                 myObj = JSON.parse(this.responseText);
+                 text = "<table border='1'>"
+                 for (x in myObj) {
+                   text += "<tr><td>" + myObj[x].name + "</td></tr>";
+                 }
+                 text += "</table>"    
+                 document.getElementById("demo").innerHTML = text;
+               }
+               xmlhttp.open("POST", "data.json", true);
+               xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+               xmlhttp.send("x=" + dbParam);
              EOF'
   
 
@@ -55,60 +51,18 @@ jobs:
              <head>
              <title>AAA</title>
              <style>
-             .dropbtn {
-               background-color: #4CAF50;
-               color: white;
-               padding: 16px;
-               font-size: 16px;
-               border: none;
-               cursor: pointer;
-             }
-
-             .dropdown {
-               position: relative;
-               display: inline-block;
-             }
-
-             .dropdown-content {
-               display: none;
-               position: absolute;
-               background-color: #f9f9f9;
-               min-width: 160px;
-               box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-               z-index: 1;
-             }
-
-             .dropdown-content a {
-               color: black;
-               padding: 12px 16px;
-               text-decoration: none;
-               display: block;
-             }
-
-             .dropdown-content a:hover {background-color: #f1f1f1}
-
-             .dropdown:hover .dropdown-content {
-               display: block;
-             }
-
-             .dropdown:hover .dropbtn {
-               background-color: #3e8e41;
-             }
              </style>
              <script>
              </script>
              </head>
              <body>
-             <div class="dropdown">
-               <button class="dropbtn">Dropdown</button>
-               <div class="dropdown-content">
-               <a href="#">Amogos1</a>
-               <a href="#">Amogos2</a>
-               <a href="#">Amogos3</a>
-               </div>
-             </div>
-             <div id="dataDisplay">
-             </div>
+             <select id="myselect" onchange="change_myselect(this.value)">
+               <option value="">Choose an option:</option>
+               <option value="customers">Customers</option>
+               <option value="products">Products</option>
+               <option value="suppliers">Suppliers</option>
+             </select>
+             <p id="demo"></p>
              <script src="script.js"></script>
              </body>
              </html>
