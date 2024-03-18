@@ -28,7 +28,7 @@ jobs:
                  myObj = JSON.parse(this.responseText);
                  text = "<table border='1'>"
                  for (x in myObj) {
-                   text += "<tr><td>" + myObj[x][sol] + "</td></tr>";
+                   text += "<tr><td>" + myObj[x][sel] + "</td></tr>";
                  }
                  text += "</table>"    
                  document.getElementById("demo").innerHTML = text;
